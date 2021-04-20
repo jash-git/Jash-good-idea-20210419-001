@@ -1,0 +1,190 @@
+站點信息收集
+
+Google
+Fofa
+Shodan
+Zoomeye
+Goby
+whatweb
+Github
+robtex
+
+快速探測存活主機
+nmap (下載地址：https://nmap.org/download.html)
+
+快速探測端口
+masscan的發包速度非常快，在windows中，它的發包速度可以達到每秒30萬包；在Linux中，速度可以達到每秒160萬。
+
+masscan在掃描時會隨機選擇目標IP，所以不會對遠程的主機造成壓力。
+https://www.freebuf.com/sectool/112583.html
+
+郵箱蒐集工具
+EmailSniper
+
+
+
+子域名收集
+SubDominscanner
+
+
+
+指紋收集
+whatweb -v http://baidu.com
+
+
+
+web目錄掃描
+御劍（御劍珍藏版（附下載））
+
+Dirbuster （https://www.jianshu.com/p/79c7b1eda56e）
+
+webpathbrute
+
+
+
+漏洞掃描
+wvs
+
+burpsuite（後台回复：“burp”獲取下載）
+
+nessus（強烈推薦）
+
+xray (後台回复：“Xray”獲取下載)
+
+
+
+爆破
+hydra（下載地址：https://github.com/vanhauser-thc/thc-hydra）
+
+漏洞利用
+metasploit
+
+burpsuite（附下載）
+
+sqlmap
+
+xxer 
+
+（xml注入利用工具） https://github.com/TheTwitchy/xxer
+
+ysoserial 
+
+（反序列化利用工具） https://github.com/frohoff/ysoserial
+
+Struts2-Scan
+
+（struts2歷史漏洞掃描和利用） https://github.com/HatBoy/Struts2-Scan
+
+weblogicScanner
+
+（weblogic歷史漏洞掃描利用） https://github.com/0xn0ne/weblogicScanner
+
+exphub 
+
+（常見web框架cve利用） https://github.com/zhzyker/exphub
+
+cve，cms，中間件，OA系統漏洞exp合集
+https://github.com/mai-lang-chai/Middleware-Vulnerability-detection
+
+
+
+webshel​​l（點擊跳轉：下載安裝及使用）
+菜刀(後台回复：“菜刀”獲取下載)
+
+蟻劍
+
+冰蠍
+
+cobalt strike
+
+本地口令獲取和破解
+hash-identifier 判斷哈希類型
+
+mimikatz
+
+Mimipenguin
+
+LaZagne
+http://next.uuzdaisuki.com/2019/12/07/%E4%B8%A4%E6%AC%BE%E5%AF%86%E7%A0%81%E6%8F%90%E5% 8F%96%E5%B7%A5%E5%85%B7%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94% A8/
+
+hashcat+口令字典
+http://next.uuzdaisuki.com/2020/07/28/%E5%93%88%E5%B8%8C%E5%AF%86%E7%A0%81%E7%88%86% E7%A0%B4%E5%B7%A5%E5%85%B7hashcat/
+
+
+本地信息收集
+linuxprivchecker
+
+LinEnum
+
+
+
+後門
+常見後門手法
+
+metasploit
+
+
+內網命令執行和文件訪問
+at
+
+schtasks
+
+telnet
+
+sc
+
+wmic
+
+wmiexec.vbs
+
+python impacket wmiexec.py
+
+psexec
+
+
+
+遠程桌面
+
+arp欺騙
+Cain
+
+Arpspoof
+
+
+
+遠控
+pupy類遠控
+
+teamview
+
+pcanywhere
+
+radmin
+
+手機端
+
+DroidJack
+
+Dendroid
+
+
+
+典型windows-rce
+ms17-010 基本通殺
+
+cve-2019-0708 開放3389情況windows7及之前通殺
+
+
+
+實用工具
+q-dir 文件管理工具，可開四個窗口
+
+beyond compare 文件/文本比較工具
+
+cmder 命令行工具
+
+everything 文件搜索工具
+
+navicat 數據庫連接工具，支持超多種類數據庫，支持導出數據，甚至提供拖庫的tunnel.php等
+
+懸劍3.0 超齊全windows工具庫系統

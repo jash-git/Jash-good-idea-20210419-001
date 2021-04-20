@@ -1,0 +1,18 @@
+條列接下的的工作項目		
+	01. 新建SetReaderDO [1 day] 已完成
+	
+	02. 整理Operator API呼叫順序流程 [1 day] 已完成
+	
+	03. 製作Operator 簡易一鍵啟動運行功能 [1 week] 已完成
+	
+	04. 調整修改YryQrcodeCmd 使其支援茶葉格式 [1 day] 已完成
+	
+	05. 整合測試YryQrcodeCmd 相關 [1 day] 已完成
+	
+	06. 建立xml-rpc 研究測試專案 [3 day] 完成50%
+	
+	07. 建立OPENSSL的 研究測試專案 [3 day]
+	
+	09. 撰寫WS呼叫xml-rpc服務取得syris token功能 [1 week]
+	
+	10. 撰寫WS呼叫支援GAPI專用類別，使WS支援GAPI [2 week] 完成20%

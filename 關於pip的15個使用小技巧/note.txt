@@ -1,0 +1,39 @@
+2、查看pip版本
+pip --version
+
+3、升級pip
+pip install --upgrade pip
+
+5、安裝庫
+pip install package_name
+pip install package_name==1.1.2
+
+6、批量安裝庫
+pip install -r e:\\requirements.txt
+
+8、卸載庫
+pip uninstall package_name
+
+9、升級庫
+pip install --upgrade package_name
+
+10、查看庫信息
+pip show -f package_name
+
+11、查看已安裝的庫
+pip list
+
+12、將庫列表保存到指定文件中
+pip freeze > requirements.txt
+
+13、查看需要升級的庫
+pip list -o
+
+14、檢查兼容問題
+pip check package-name
+
+15、下載庫到本地
+將庫下載到本地指定文件，保存為whl格式
+pip download package_name -d "要保存的文件路径"
+
+附：更換pip源

@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><!-- InstanceBegin template="/Templates/normal.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>窗口函数</title>
+<!-- InstanceEndEditable --> 
+<link href="default.css" rel="stylesheet" type="text/css">
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+</head>
+
+<body style="background-repeat:no-repeat; background-position: top left" background="bg.gif">
+<table width="100%" border="0" cellpadding="4" cellspacing="4" class="content">
+  <tr> <!-- InstanceBeginEditable name="标题" --> 
+    <td class="title1">窗口函数 (Window)</td>
+    <!-- InstanceEndEditable --></tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+  <tr> <!-- InstanceBeginEditable name="正文" --> 
+    <td><p><a href="../Ch3_Window%20Functions/ch03-01-1">ch03-01-1</a>: 精确调整窗口外框的长宽<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-02-1">ch03-02-1</a>: 将所有缩小化子窗口以拼图的方式重新排列于母窗口左下角的范围中<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-03-1">ch03-03-1</a>: 调用“记事本”，并自动输入一段字符串<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-03-2">ch03-03-2</a>: 可调用子窗口取得焦点，并显现到最前面<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-05-1">ch03-04-1</a>: 将子窗口数组重新设置为同一大小和同一位置，将桌面上所有程序都重新设置为同一大小和同一位置<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-05-1">ch03-05-1</a>: 鼠标移动到对象位置，取得现在对象类名称和内含文字<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-06-1">ch03-06-1</a>: 排除非活动状态的窗口组件，鼠标移动到组件位置时，取得现在组件的类名称和内含文字<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-07-1">ch03-07-1</a>: 缩小Form1到屏幕左下角；将焦点交给下一顺位程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-08-1">ch03-08-1</a>: 建立一个新的窗口（ListView）<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-08-2">ch03-08-2</a>: 建立一个多行文字、可移动、彩色文字、彩色背景的按钮窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-08-3">ch03-08-3</a>: 打开、播放、停止一个 AVI 文件<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-08-4">ch03-08-4</a>: 在打开的字体对话框中新建一个颜色选项<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-08-5">ch03-08-5</a>: 创建一个标准的滚动条菜单 ComboBox，并可执行此功能<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-09-1">ch03-09-1</a>: 改变From1位置、大小和状态<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-10-1">ch03-10-1</a>: 当此程序关闭时，单击【是】按钮，只是关闭Form1窗口，并未关闭程序；要使用 
+        Alt+F4 才能完全关闭程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-10-2">ch03-10-2</a>: 将操作系统的任务栏小图标复制到ImageList组件中并显示出来<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-11-1">ch03-11-1</a>: 使【设置打印机】对话框上的指定组件功能失效<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-11-2">ch03-11-2</a>: 用API函数调用【字体】对话框和【打印】对话框，使其中特定选项成灰色无效状态，且执行其他功能<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-11-3">ch03-11-3</a>: 让Windows任务栏的【开始】按钮失效<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-12-1">ch03-12-1</a>: 列出所有打开窗口及对象<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-12-2">ch03-12-2</a>: 将Form1的所有对象列出<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-13-1">ch03-13-1</a>: 将Form1上所有密码**转成字符；单击Button2按钮，执行Button3改变Memo1底色的功能<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-13-2">ch03-13-2</a>: 隐藏或显示任务栏上的小时钟<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-14-1">ch03-14-1</a>: 列出桌面上现有程序和对象清单<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-15-1">ch03-15-1</a>: 列出桌面上现有程序标题文字与类对象的树状结构<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-16-1">ch03-16-1</a>: 检测拨号网络【连接到】对话框是否打开；若已打开，将对话框显示在屏幕桌面最前面<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-16-2">ch03-16-2</a>: 将桌面所有对象与任务栏隐藏/显示，并让窗口切换功能(Alt+Tab组合键)失效/恢复；<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-17-1">ch03-17-1</a>: 出现【打开】对话框，将对话框的所有标题改成自定义标题<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-17-2">ch03-17-2</a>: 取得StringGrid1字段编辑中输入点所在的字符位置<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-18-1">ch03-18-1</a>: 在全屏幕或Form1背景粘贴上指定图像<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-18-2">ch03-18-2</a>: 在Form1上绘制可旋转文字图案<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-18-3">ch03-18-3</a>: 在ToolBar1背景上连续粘贴Image1图像<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-18-4">ch03-18-4</a>: 将ComboBox对象删除立体边框，改为平面彩色线框<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-18-5">ch03-18-5</a>: 将Form1裁切成为米老鼠形状窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-19-1">ch03-19-1</a>: 运用ImageList1本身属性，用鼠标拖曳图文件时呈现半透明彩图<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-19-2">ch03-19-2</a>: 缩小Form1到任务栏上，由在任务栏上的母窗口（Project4）取得焦点<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-19-3">ch03-19-3</a>: 同时调用【资源管理器】与【搜索结果】对话框<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-19-4">ch03-19-4</a>: 运用窗口类WNDCLASS结构数据，建立一个新的窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-20-1">ch03-20-1</a>: 启动屏幕保护程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-20-2">ch03-20-2</a>: 任何程序在最前面执行，皆被放大至全屏幕，并改变标题<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-21-1">ch03-21-1</a>: 程序打开时，建立本程序惟一的标识符（Mutex互斥器），检测及防止重复打开本程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-22-1">ch03-22-1</a>: Memo1列出系统所有过程与运行程序；选取CheckBox1后，Memo1列出现在桌面运行程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-22-2">ch03-22-2</a>: 将焦点转移到第二个窗口上，并显现自定义字符串<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-23-1">ch03-23-1</a>: 打开原【打开】对话框类型，将对话框上的说明文字全部替换自定义文字；重载【打开】对话框类型，将【选择】、【取消】按钮上的标题文字修改成自定义文字<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-23-2">ch03-23-2</a>: 调用与打开标准的WinAPI【打开】对话框<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-24-1">ch03-24-1</a>: 防止重复打开本程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-25-1">ch03-25-1</a>: 将工具列与桌面依现在位置重绘更新（刷新）<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-25-2">ch03-25-2</a>: 将任务栏的【开始】图标改成自定义图标；使任务栏的【开始】图标失效并换成【暂停】图标<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-25-3">ch03-25-3</a>: 切换隐藏/显示任务栏；切换隐藏/显示桌面图示<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-26-1">ch03-26-1</a>: 取得指定窗口配置信息<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-27-1">ch03-27-1</a>: 鼠标指针按住Panel1，移动全部Panel<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-27-2">ch03-27-2</a>: 运用区域 Hook过程，调用与设置【设置打印格式】对话框位置；【设置打印格式】对话框出现在Form1居中位置<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-27-3">ch03-27-3</a>: 取得Form1的Client区域开始起点：X位置为第几位图，Y位置为第几位图<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-27-4">ch03-27-4</a>: 运用Win API制造出片头图像窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-27-5">ch03-27-5</a>: 将鼠标移动到按钮左边沿的中间位置<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-27-6">ch03-27-6</a>: 检测鼠标是否在 Form1 范围中<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-28-1">ch03-28-1</a>: 取得鼠标所在位置的窗口标题字符串<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-28-2">ch03-28-2</a>: 鼠标移动至任一按钮时，该按钮即取得焦点<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-29-1">ch03-29-1</a>: 取得下一顺位的窗口标题字符串<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-30-1">ch03-30-1</a>: 在不同线程行程间的窗口取得焦点<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-30-2">ch03-30-2</a>: 取得下一顺位的窗口标题字符串与线程过程ID<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-31-1">ch03-31-1</a>: 取得Form1下的子对象属性与类型名称<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-32-1">ch03-32-1</a>: 注册系统热键<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-33-1">ch03-33-1</a>: 先设置被打开程序的位置、大小和显示状态，再打开指定程序<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-33-2">ch03-33-2</a>: 两程序间的消息发送<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-34-1">ch03-34-1</a>: 取得现在执行中窗口为Unicode或ANSI-ASCII格式<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-35-1">ch03-35-1</a>: 切换子窗口为显示或隐藏状态<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-35-2">ch03-35-2</a>: 删除屏幕保护程序（仅适用NT多任务系统）<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-36-1">ch03-36-1</a>: 注册系统热键，最大化窗口，并把其带到最前面<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-37-1">ch03-37-1</a>: 窗口图像移动渐隐效果<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-37-2">ch03-37-2</a>: 修改树状窗口组件(TreeView1)属性，允许自由调整大小<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-37-3">ch03-37-3</a>: 修改单行字符串窗口组件(Edit1)属性，允许自由调整外沿范围与使用鼠标按住拖曳<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-37-4">ch03-37-4</a>: Form1模拟任务栏，可自由拖曳移动到屏幕边缘位置<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-38-1">ch03-38-1</a>: 注册系统热键，最小化与恢复窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-39-1">ch03-39-1</a>: 实现任务栏托盘图标TrayIcon<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-39-2">ch03-39-2</a>: 显示使用Popup菜单<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-40-1">ch03-40-1</a>: 重新设置对象的父窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-41-1">ch03-41-1</a>: 将CheckBox1和 RadioGroup1选项样式切换成按钮样式<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-41-2">ch03-41-2</a>: 切换Edit1单行字符串组件的&quot;字母都转为大写&quot;与&quot;限制输入数字&quot;功能<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-41-3">ch03-41-3</a>: 改变TreeView1各节点，成为CheckedBox式样<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-41-4">ch03-41-4</a>: 设置控件对象为透明；设置按钮的标题文字的对齐方式<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-42-1">ch03-42-1</a>: 使用注册组件保存与恢复程序窗口关闭时范围尺寸的信息<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-43-1">ch03-43-1</a>: 重置窗口位置及属性<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-44-1">ch03-44-1</a>: 替换通用提示窗口THintWindow的Hint内容<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-44-2">ch03-44-2</a>: 取得系统使用的语言<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-45-1">ch03-45-1</a>: 注册系统热键，并将具有Popup属性的子窗口全部隐藏起来<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-46-1">ch03-46-1</a>: 设置窗口状态及属性<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-46-2">ch03-46-2</a>: 切换隐藏或显示任务栏与现在桌面所有快捷方式的图标<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-47-1">ch03-47-1</a>: 切换隐藏或显示不同线程所指定的窗口显示状态<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-48-1">ch03-48-1</a>: 将所有子窗口以拼图方式、或依序排列方式重组于母窗口指定范围中<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-49-1">ch03-49-1</a>: 获取鼠标指针所指的窗口的标题<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-49-2">ch03-49-2</a>: 激活鼠标指针所指的子窗口<br>
+        <br>
+        <a href="../Ch3_Window%20Functions/ch03-50-1">ch03-50-1</a>: 制作显示倒数计时的片头窗口SplashScreen</p>
+      </td>
+    <!-- InstanceEndEditable --></tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+<!-- InstanceEnd --></html>

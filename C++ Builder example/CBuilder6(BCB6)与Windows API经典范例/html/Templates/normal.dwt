@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>无标题</title>
+<!-- TemplateEndEditable --> 
+<link href="../default.css" rel="stylesheet" type="text/css">
+<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+</head>
+
+<body style="background-repeat:no-repeat; background-position: top left" background="../bg.gif">
+<table width="100%" border="0" cellpadding="4" cellspacing="4" class="content">
+  <tr> <!-- TemplateBeginEditable name="标题" --> 
+    <td class="title1">&nbsp;</td>
+    <!-- TemplateEndEditable --></tr>
+  <tr>
+    <td><hr></td>
+  </tr>
+  <tr> <!-- TemplateBeginEditable name="正文" --> 
+    <td>&nbsp;</td>
+    <!-- TemplateEndEditable --></tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

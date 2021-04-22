@@ -1,0 +1,21 @@
+;C++Builder-generated INF file for ActiveFormProj1.ocx
+[Add.Code]
+ActiveFormProj1.ocx=ActiveFormProj1.ocx
+vcl60.bpl=vcl60.bpl
+rtl60.bpl=rtl60.bpl
+
+[ActiveFormProj1.ocx]
+file=http://localhost/ActiveX/ActiveFormProj1.ocx
+clsid={0602F79F-65D6-453E-A5D4-551CAA86A36F}
+RegisterServer=yes
+FileVersion=1,0,0,0
+
+[vcl60.bpl]
+file=
+FileVersion=6,0,6,240
+DestDir=11
+
+[rtl60.bpl]
+file=
+FileVersion=6,0,6,240
+DestDir=11

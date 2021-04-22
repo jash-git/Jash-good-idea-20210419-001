@@ -1,0 +1,5 @@
+typedef sequence<float> SignalType;
+interface Signal
+{
+   void GetSignal(in long n,in long fs,inout SignalType output);
+};

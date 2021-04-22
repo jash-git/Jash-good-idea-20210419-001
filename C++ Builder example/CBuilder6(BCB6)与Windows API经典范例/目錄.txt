@@ -1,0 +1,6 @@
+Ch1_File Functions為文件函數，包括41個與文件操作相關的函數範例。
+Ch2_Bitmap Functions為位圖函數，包括37個與圖像操作相關的函數範例。
+Ch3_Window Functions為窗口函數，包括93個與窗口操作相關的函數範例。
+Ch4_Keyboard Input Functions為鍵盤輸入函數，包括23個與鍵盤輸入操作相關的函數範例。
+Ch5_Mouse Input Functions為鼠標輸入函數，包括12個與鼠標輸入操作相關的函數範例。
+Ch6_Hook(Keyboard & Mouse)為Hook實例，包括具有完整註解的鼠標和鍵盤Hook連接文件(DLL)與執行文件(EXE)程序代碼。

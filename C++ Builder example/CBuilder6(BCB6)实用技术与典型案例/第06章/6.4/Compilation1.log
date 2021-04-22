@@ -1,0 +1,26 @@
+Creating the help file MyHelp.hlp.
+
+Processing D:\YCL\exemple\6.4\Content.rtf
+    HC3111: Warning: topic #1 of D:\YCL\exemple\6.4\Content.rtf : 
+	This topic contains keywords but no title.
+    HC3108: Warning: topic #1 of D:\YCL\exemple\6.4\Content.rtf : 
+	The title footnote ($) does not appear before any text.
+    HC1003: Note: topic #1 of D:\YCL\exemple\6.4\Content.rtf : 
+	A paragraph marker is formatted as a hidden character.
+    HC1003: Note: topic #1 of D:\YCL\exemple\6.4\Content.rtf : 
+	A paragraph marker is formatted as a hidden character.
+    HC1015: Note: topic #1 of D:\YCL\exemple\6.4\Content.rtf : 
+	A page break is formatted as a hidden character.
+
+Resolving keywords...
+Adding bitmaps...
+4	Topics
+3	Jumps
+4	Keywords
+0	Bitmaps
+
+
+Created D:\YCL\exemple\6.4\MyHelp.hlp, 8,755 bytes
+Compile time: 0 minutes, 0 seconds
+3 notes, 2 warnings
+

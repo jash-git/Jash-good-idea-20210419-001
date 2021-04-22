@@ -1,0 +1,20 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+LCID=0x804 0x0 0x0 ; 中文(中国)
+REPORT=Yes
+CONTENTS=Book
+TITLE=C++ Builder实用技术及典型案例分析
+HLP=MyHelp.hlp
+
+[FILES]
+Content.rtf
+
+[MAP]
+Address=3         ; 联系地址
+Book=0              ; 第一页
+Content=1         ; 章节介绍
+Feature=2         ; 书的特色
+
+[WINDOWS]
+MyWin="",(500,200,500,800),20740,(r16777088),(r16777088),f3

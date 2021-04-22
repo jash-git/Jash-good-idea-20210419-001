@@ -1,0 +1,15 @@
+module MyTime                     //定义一个作者自己的模块 MyTime
+{
+   struct TimeOfDay                // 一个时间结构体，包括时、分、秒
+   {
+      short hour;                   //一个短整型数表示小时
+      short minute;                 //一个短整型数表示分
+      short second;                 //一个短整型数表示秒
+   };
+   
+   interface Time                  //时间接口
+   {
+      exception TimeException{string S;};  //异常
+      TimeOfDay get_gmt();             //获取时间的操作，返回结构体 TimeOfDay
+   };
+};

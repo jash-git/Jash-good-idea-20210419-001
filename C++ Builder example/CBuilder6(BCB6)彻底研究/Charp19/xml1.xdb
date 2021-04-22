@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xdb="http://www.borland.com/schemas/delphi/6.0/XMLDataBinding">
+	<xs:element name="stock" type="stockType"/>
+	<xs:complexType name="stockType"><xs:annotation>
+			<xs:appinfo xdb:docElement="stock"/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="price" type="xs:decimal"/>
+			<xs:element name="symbol" type="xs:string"/>
+			<xs:element name="shares" type="xs:integer"/>
+		</xs:sequence>
+		<xs:attribute name="exchange" type="xs:string"/>
+	</xs:complexType>
+</xs:schema>

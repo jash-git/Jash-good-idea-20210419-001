@@ -1,0 +1,1 @@
+这是一个用InstallShield制作的安装文件，读者可以运行它，将实例6.3中的APITestProj程序安装到你的计算机上。

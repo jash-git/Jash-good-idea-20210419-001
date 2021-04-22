@@ -1,0 +1,30 @@
+#include <vcl.h>
+#pragma hdrstop
+
+#include "TEST111SERVERIMPL.H"
+
+#if !defined(__PRAGMA_SMART_INIT_DEFINED)
+#define __PRAGMA_SMART_INIT_DEFINED
+#pragma package(smart_init)
+#endif
+
+#pragma resource "*.dfm"
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Global instance of TTest111ServerImpl 
+/////////////////////////////////////////////////////////////////////////////
+TTest111Server *Test111Server;
+
+
+/////////////////////////////////////////////////////////////////////////////
+// TTest111Server::TTest111Server
+/////////////////////////////////////////////////////////////////////////////
+__fastcall TTest111Server::TTest111Server(TComponent* Owner) : TCRemoteDataModule(Owner)
+{
+}
+
+
+
+
+ 

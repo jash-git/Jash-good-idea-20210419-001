@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.05.03"/>
+    <PROJECT value="CreateImage.exe"/>
+    <OBJFILES value="CreateImage.obj main.obj"/>
+    <RESFILES value="CreateImage.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) main.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="VCLX50.lib VCL50.lib"/>
+    <SPARELIBS value="VCL50.lib VCLX50.lib"/>
+    <PACKAGES value="VCL50.bpi VCLX50.bpi bcbsmp50.bpi VCLDB50.bpi ibsmp50.bpi VCLBDE50.bpi 
+      VCLIB50.bpi VCLMID50.bpi VCLIE50.bpi INETDB50.bpi INET50.bpi NMFAST50.bpi 
+      WEBMID50.bpi bcbie50.bpi dclocx50.bpi bcb97axserver50.bpi VCLADO50.bpi 
+      VCLDBX50.bpi QRPT50.bpi TEEQR50.bpi NONVCLTYPEINFOPACKAGE.bpi 
+      NEWADDITIONALCOMPONENTSRTP.bpi TEEDB4C5.bpi TEE4C5.bpi TEEUI4C5.bpi 
+      TeeQR4C5.bpi TEEGL4C5.bpi TEEPRO4C5.bpi PKIECTRLC5.bpi PKIEDBC5.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="tlink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="CreateImage.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder5\NewComps\&quot;;&quot;D:\Program Files\Plasmatech\scp\EvalC5\&quot;;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;$(BCB)\Chapter10Packages"/>
+    <LIBPATH value="$(BCB)\projects\lib;&quot;C:\Program Files\Borland\CBuilder5\NewComps\&quot;;&quot;D:\Program Files\Plasmatech\scp\EvalC5\&quot;;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\Chapter10Packages"/>
+    <WARNINGS value="-w-par"/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;C:\Program Files\Borland\CBuilder5\NewComps\.&quot; 
+      -I&quot;D:\Program Files\Plasmatech\scp\EvalC5\.&quot; -I$(BCB)\jcomps 
+      -I$(BCB)\include -I$(BCB)\include\vcl -I$(BCB)\include\NewComps 
+      -I$(BCB)\Chapter10Packages -src_suffix cpp -boa"/>
+    <CFLAG1 value="-O2 -H=$(BCB)\lib\vcl50.csm -Hc -Vx -Ve -RT- -X- -a8 -b- -k- -vi -c -tW -tWM"/>
+    <PFLAGS value="-$Y- -$L- -$D- -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+  </LINKER>
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=2057
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+$(BCB)\Bin\dclado50.bpl=Borland ADO DB Components
+$(BCB)\Bin\dclsmpedit50.bpl=Borland Editor Script Enhancements
+$(BCB)\Bin\dclmid50.bpl=Borland MIDAS Components
+$(BCB)\Bin\dclnet50.bpl=Borland Internet Components
+$(BCB)\Bin\DBWEBXPRT.BPL=Borland Web Wizard Package
+$(BCB)\Bin\dclwbm50.bpl=Borland InternetExpress Components
+$(BCB)\Bin\bcbie50.bpl=Borland C++Builder Internet Explorer 5 Components Package
+$(BCB)\Bin\dclocx50.bpl=Borland Sample Imported ActiveX Controls
+$(BCB)\Bin\bcb2kaxserver50.bpl=Borland C++Builder COM Server Components Sample Package
+$(BCB)\Bin\dclite50.bpl=Borland Integrated Translation Environment
+$(BCB)\Bin\mfcwizard.bpl=MFC Wizard
+
+[HistoryLists\hlIncludePath]
+Count=12
+Item0=C:\Program Files\Borland\CBuilder5\NewComps\;D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;$(BCB)\Chapter10Packages
+Item1=C:\Program Files\Borland\CBuilder5\NewComps\;C:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;$(BCB)\Chapter10Packages
+Item2=D:\Programs\Borland\CBuilder5\NewComps\;D:\Programs\Borland\CBuilder5\Projects\;D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;$(BCB)\Chapter10Packages
+Item3=D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;$(BCB)\Chapter10Packages
+Item4=D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps
+Item5=D:\Program Files\Plasmatech\scp\EvalC5\;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;..\..\..\Chapter10Packages
+Item6=D:\Program Files\Plasmatech\scp\EvalC5\;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps;d:\Programs\Chapter10Packages
+Item7=D:\Program Files\Plasmatech\scp\EvalC5\;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps
+Item8=D:\Program Files\Plasmatech\scp\EvalC5;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps
+Item9=d:\bcbbook\documents\chapter10\newadditionalcomponents;$(BCB)\jcomps;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps
+Item10=$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\NewComps
+Item11=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=12
+Item0=$(BCB)\projects\lib;C:\Program Files\Borland\CBuilder5\NewComps\;D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\Chapter10Packages
+Item1=$(BCB)\projects\lib;C:\Program Files\Borland\CBuilder5\NewComps\;C:\Program Files\Borland\CBuilder5\Projects\;D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\Chapter10Packages
+Item2=$(BCB)\projects\lib;D:\Programs\Borland\CBuilder5\NewComps\;D:\Programs\Borland\CBuilder5\Projects\;D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\Chapter10Packages
+Item3=D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\Chapter10Packages
+Item4=D:\Program Files\Plasmatech\scp\EvalC5\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps
+Item5=D:\Program Files\Plasmatech\scp\EvalC5\;..\Lib\NewComps;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;..\..\..\Chapter10Packages
+Item6=D:\Program Files\Plasmatech\scp\EvalC5\;..\Lib\NewComps;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;d:\Programs\Chapter10Packages
+Item7=D:\Program Files\Plasmatech\scp\EvalC5\;..\Lib\NewComps;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps
+Item8=D:\Program Files\Plasmatech\scp\EvalC5;..\Lib\NewComps;d:\bcbbook\documents\chapter10\newadditionalcomponents\;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\lib\NewComps
+Item9=d:\bcbbook\documents\chapter10\newadditionalcomponents;$(BCB)\jcomps;$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\lib\NewComps
+Item10=$(BCB)\lib\obj;$(BCB)\lib;$(BCB)\lib\obj\NewComps;$(BCB)\lib\NewComps
+Item11=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

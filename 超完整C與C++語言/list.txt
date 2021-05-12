@@ -1,0 +1,14 @@
+ch01~計算機概論與C語言簡介.ppt
+ch02~C語言從零開始（C語言的基本結構）.ppt
+ch03~基本的資料處理（資料型態與運算式）.ppt
+ch04~基本的輸出與輸入.ppt
+ch05~流程控制.ppt
+ch06~陣列與字串.ppt
+ch07~函式與巨集.ppt
+ch08~指標與動態記憶體.ppt
+ch09~變數等級.ppt
+ch10~C語言的進階資料型態（typedef,struct,union,enum）.ppt
+ch11~檔案處理.ppt
+ch12~資料結構實作.ppt
+ch13~C++物件導向程式設計.ppt
+

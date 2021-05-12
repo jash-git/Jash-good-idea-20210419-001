@@ -1,0 +1,13 @@
+Chap 01~資料結構概論.ppt
+Chap 02~陣列.ppt
+Chap 03~演算法.ppt
+Chap 04~陣列結構的演算法應用.ppt
+Chap 05~搜尋演算法.ppt
+Chap 06~排序演算法.ppt
+Chap 07~堆疊.ppt
+Chap 08~佇列.ppt
+Chap 09~鏈結串列.ppt
+Chap 10~遞迴.ppt
+Chap 11~樹.ppt
+Chap 12~圖形.ppt
+Chap 13~雜湊.ppt

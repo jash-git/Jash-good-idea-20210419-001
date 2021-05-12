@@ -1,0 +1,1223 @@
+define("pages_new/common_share/video/player/plugins/danmu/danmu_store.js",[],function(){
+"use strict";
+return{
+name:"danmu-plugin",
+namespaced:!0,
+state:function(){
+return{
+inputStatus:0,
+danmuInfo:null
+};
+},
+mutations:{
+setInputStatus:function(n,t){
+n.inputStatus=t.value;
+},
+setDanmuInfo:function(n,t){
+n.danmuInfo=t;
+}
+}
+};
+});define("pages_new/common_share/video/player/plugins/tail/tail_store.js",[],function(){
+"use strict";
+return{
+name:"tail-plugin",
+namespaced:!0,
+state:function(){
+return{
+tailStatus:0
+};
+},
+mutations:{
+setTailStatus:function(t,a){
+t.tailStatus=a.value;
+}
+},
+actions:{
+setLikeStatus:function(t,a){
+var e=t.rootState,s=t.commit;
+s("SET_PRAISE_STATUS",{
+hasPraised:a.hasPraised
+},{
+root:!0
+}),s("SET_PRAISE_NUM",{
+praiseNum:e.extRes.appmsgstat.old_like_num+(a.hasPraised?1:-1)
+},{
+root:!0
+});
+}
+}
+};
+});define("pages_new/modules/reward/reward_store.js",[],function(){
+"use strict";
+return{
+name:"mp-reward",
+namespaced:!0
+};
+});var _slicedToArray=function(){
+function e(e,t){
+var n=[],r=!0,o=!1,m=void 0;
+try{
+for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);
+}catch(i){
+o=!0,m=i;
+}finally{
+try{
+!r&&s["return"]&&s["return"]();
+}finally{
+if(o)throw m;
+}
+}
+return n;
+}
+return function(t,n){
+if(Array.isArray(t))return t;
+if(Symbol.iterator in Object(t))return e(t,n);
+throw new TypeError("Invalid attempt to destructure non-iterable instance");
+};
+}(),_extends=Object.assign||function(e){
+for(var t=1;t<arguments.length;t++){
+var n=arguments[t];
+for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r]);
+}
+return e;
+};
+define("pages_new/modules/comment/comment_store.js",["pages_new/3rd/vue.js","common/keyboard.js","common/utils.js","biz_wap/utils/mmversion.js","biz_wap/utils/jsmonitor_report.js"],function(e){
+"use strict";
+var t=e("pages_new/3rd/vue.js"),n=e("common/keyboard.js"),r=e("common/utils.js"),o=e("biz_wap/utils/mmversion.js"),m=e("biz_wap/utils/jsmonitor_report.js"),a="http://mmbiz.qpic.cn/mmbiz/a5icZrUmbV8p5jb6RZ8aYfjfS2AVle8URwBt8QIu6XbGewB9wiaWYWkPwq4R7pfdsFibuLkic16UcxDSNYtB8HnC1Q/0";
+return{
+name:"mp-comment",
+namespaced:!0,
+state:function(){
+return{
+writeStatus:0,
+myCommentData:null,
+myCommentStatus:0,
+commentData:null,
+commentStatus:0,
+commentVersion:function(){
+return o.isWechat?o.isInMiniProgram?0:n.canUseKeyboard?2:(o.isIOS||o.isAndroid)&&(o.gtVersion("7.0.8")||r.isNativePage())?2:0:0;
+}(),
+offset:0,
+replyFlag:0,
+warningToast:"",
+reportData:{
+scene:0,
+idkey:"",
+moreList:27,
+repeatList:25,
+errList:18,
+handleList:26,
+addCommentErr:19,
+errComment:18,
+repeatContent:24,
+repeatContentID:23
+}
+};
+},
+getters:{
+tempKey:function(e,t,n){
+return n.cgiData.tempkey||"";
+},
+commentId:function(e,t,n){
+return n.cgiData.comment_id||"";
+},
+commentEnabled:function(e,t,n){
+return n.extRes.comment_enabled||0;
+},
+commentCount:function(e,t,n){
+return n.extRes.comment_count;
+},
+nickName:function(e,t,n){
+return n.extRes.nick_name||"";
+},
+headImg:function(e,t,n){
+return n.extRes.logo_url||a;
+},
+isFans:function(e,t,n){
+return n.extRes.is_fans||0;
+},
+isFansDays:function(e,t,n){
+return n.extRes.is_fans_days||0;
+},
+onlyFansCanComment:function(e,t,n){
+return n.extRes.only_fans_can_comment||0;
+},
+onlyFansDaysCanComment:function(e,t,n){
+return n.extRes.only_fans_days_can_comment||0;
+},
+canC2cReply:function(e,t,n){
+return!!n.extRes.test_flag&&0!==(256&n.extRes.test_flag);
+}
+},
+mutations:{
+setCommentVersion:function(e,t){
+e.commentVersion=t.value;
+},
+setWriteStatus:function(e,t){
+e.writeStatus=t.status;
+},
+setMyCommentData:function(e,t){
+e.myCommentData=t.data;
+},
+setMyCommentStatus:function(e,t){
+e.myCommentStatus=t.status;
+},
+setCommentData:function(e,t){
+e.commentData=t.data;
+},
+setCommentLike:function(e,t){
+var n=t.type,r=void 0===n?"mine":n,o=t.commentIdx,m=t.replyIdx,a=t.likeStatus,s="mine"===r?e.myCommentData.my_comment:e.commentData.elected_comment;
+if("number"==typeof o&&"undefined"==typeof m){
+var i=s[o];
+i&&i.like_status!==a&&(i.like_status=a,i.like_num+=a?1:-1);
+}else if("number"==typeof o&&"number"==typeof m){
+var i=s[o],u=i.reply_new.reply_list[m];
+u&&u.reply_like_status!==a&&(u.reply_like_status=a,u.reply_like_num+=a?1:-1,i.reply_new=_extends({},i.reply_new));
+}
+},
+addComment:function(e,n){
+var r=n.type,o=void 0===r?"mine":r,m=n.commentItem,a=n.commentIdx,s=n.replyItem,i=n.replyIdx,u="mine"===o?e.myCommentData.my_comment:e.commentData.elected_comment;
+if("undefined"!=typeof m)u.unshift(m);else if("number"==typeof a&&"undefined"!=typeof s){
+var c=u[a];
+c&&(c.reply_new?("number"==typeof i?c.reply_new.reply_list.splice(i+1,0,s):c.reply_new.reply_list.push(s),
+c.reply_new.reply_total_cnt++,c.reply_new=_extends({},c.reply_new)):t.set(c,"reply_new",{
+reply_list:[s],
+reply_total_cnt:1
+}));
+}
+},
+removeComment:function(e,t){
+var n=t.type,r=void 0===n?"mine":n,o=t.commentIdx,m=t.replyIdx,a="mine"===r?e.myCommentData.my_comment:e.commentData.elected_comment;
+if("number"==typeof o&&"undefined"==typeof m)a.splice(o,1);else if("number"==typeof o&&"number"==typeof m){
+var s=a[o];
+s&&(s.reply_new.reply_list.splice(m,1),s.reply_new.reply_total_cnt--,s.reply_new=_extends({},s.reply_new));
+}
+},
+updateCommentReplyInfo:function(e,t){
+var n=t.commentIdx,r=t.key,o=t.value;
+if("number"==typeof n){
+var m=e.commentData.elected_comment[n];
+m&&m.reply_new&&r in m.reply_new&&(m.reply_new[r]=o,m.reply_new=_extends({},m.reply_new));
+}
+},
+setCommentStatus:function(e,t){
+e.commentStatus=t.status;
+},
+setOffset:function(e,t){
+e.offset=t.value;
+},
+setReplyFlag:function(e,t){
+e.replyFlag=t.flag;
+},
+setReportData:function(e,t){
+e.reportData=t.data;
+},
+setWarningToast:function(e,t){
+e.warningToast=t.content;
+}
+},
+actions:{
+myReport:function(e,t){
+var n=e.state,r=_slicedToArray(t,2),o=r[0],a=r[1],s=void 0===a?"":a;
+if("undefined"!=typeof o)if(n.reportData.idkey)m.setSum(n.reportData.idkey,o,1);else{
+var i=new Image,u=Math.random();
+i.src="/mp/jsreport?key="+o+"&content="+s+"&r="+u;
+}
+}
+}
+};
+});define("pages_new/common_share/video/topic/topic_store.js",[],function(){
+"use strict";
+return{
+name:"mp-topic",
+namespaced:!0,
+state:function(){
+return{
+reportStatus:[]
+};
+},
+getters:{
+list:function(t,e,n){
+var r=n.cgiData.topics||[];
+return r;
+},
+reportStatus:function(t){
+return t.reportStatus;
+},
+hasDesc:function(t,e,n){
+return!!n.cgiData.msg_desc;
+},
+canReward:function(t,e,n){
+return n.cgiData.is_need_reward;
+}
+},
+mutations:{
+REPORT_ITEM:function(t,e){
+t.reportStatus[e]=!0;
+}
+},
+actions:{
+reportItem:function(t,e){
+t.commit("REPORT_ITEM",e);
+}
+}
+};
+});define("pages_new/common_share/video/like_and_share/like_and_share_store.js",["pages_new/common_share/video/like_and_share/actions.js","pages_new/common_share/video/like_and_share/mutations.js","biz_wap/jsapi/core.js","biz_wap/utils/mmversion.js","biz_wap/utils/device.js"],function(e){
+"use strict";
+var s=e("pages_new/common_share/video/like_and_share/actions.js"),a=e("pages_new/common_share/video/like_and_share/mutations.js"),t=e("biz_wap/jsapi/core.js"),i=e("biz_wap/utils/mmversion.js"),n=e("biz_wap/utils/device.js");
+return{
+name:"mp-like-and-share",
+namespaced:!0,
+getters:{
+hasExtReqDone:function(e,s,a){
+var i=a.extRes;
+return i.appmsgstat&&t.invoke("handleHaokanAction",{
+imgUrl:a.cgiData.round_head_img?a.cgiData.round_head_img:"",
+link:a.cgiData.msg_link.html(!1),
+desc:a.cgiData.msg_desc||"",
+title:a.cgiData.msg_title,
+action:"update_recommend_status",
+permission:a.cgiData.is_temp_url||a.extRes.appmsgstat.show_like_gray||!a.extRes.appmsgstat.show_like||2!==a.cgiData.appmsg_like_type?0:1,
+recommend:a.extRes.appmsgstat.liked?1:0
+},function(){}),!!i.appmsgstat;
+},
+test:function(e,s,a){
+return a.extRes;
+},
+collectShow:function o(e,s,a){
+var o=!1;
+return(i.isWechat&&(n.os.iphone&&i.getInner()>"17001000"||n.os.android&&i.getInner()>"27001300")||n.os.windows&&i.getInner()>="63010000")&&(o=!0),
+o&&a.extRes.share_flag.show;
+},
+shareShow:function r(e,s,a){
+var r=!1;
+return n.os.pc?n.os.windows&&i.getInner()>="63010000"&&(r=!0):r=!0,r&&a.extRes.share_flag.show;
+}
+},
+mutations:a,
+actions:s
+};
+});var _extends=Object.assign||function(e){
+for(var t=1;t<arguments.length;t++){
+var r=arguments[t];
+for(var a in r)Object.prototype.hasOwnProperty.call(r,a)&&(e[a]=r[a]);
+}
+return e;
+};
+define("pages_new/common_share/video/related_video_list/related_video_list_store.js",["pages/utils.js"],function(e){
+"use strict";
+function t(e){
+var t=Math.floor(e/60),r=e-60*t;
+return 10>r&&(r="0"+r),10>t&&(t="0"+t),t+":"+r;
+}
+var r=e("pages/utils.js");
+return{
+name:"mp-related-video-list",
+namespaced:!0,
+getters:{
+hasRelatedVideoList:function(e,t,r){
+var a=r.extRes;
+return!!a.related_tag_video&&!!a.related_tag_video.length&&a.related_tag_video.length>0;
+},
+list:function(e,a,n){
+var o=n.extRes;
+return a.hasRelatedVideoList?o.related_tag_video.map(function(e){
+var a=_extends({},e,{
+album:!1,
+formatDuration:t(e.duration),
+read_num:r.formatReadNum(e.read_num||e.readcnt)
+});
+return a.read_num=""===a.read_num?0:a.read_num,a;
+}):[];
+},
+forMpVideoDataBuffer:function(e,t,r){
+var a=r.extRes;
+return a.related_video_info?a.related_video_info.push_channel_seq||"":"";
+}
+}
+};
+});define("pages_new/common_share/video/player/player_store.js",[],function(){
+"use strict";
+return{
+name:"mp-video-player",
+namespaced:!0,
+state:{
+errType:0,
+errCode:0,
+errMsg:"",
+refreshBtnStatus:0,
+topStickyInfoStatus:0,
+isInFullscreen:!1,
+isSeeking:!1,
+status:"init",
+subStatus:"init",
+loadingStatus:0,
+controlBarStatus:0,
+coverStatus:1,
+midPlayStatus:0,
+endExitFullStatus:0,
+resolutionEntryStatus:0,
+subSettingStatus:0,
+accessPlayBtnStatus:0,
+touchOprStatus:0,
+progressBarMark:[]
+},
+mutations:{
+setError:function(t,s){
+t.errType=s.type,t.errCode=s.code,t.errMsg=s.msg,t.refreshBtnStatus=s.refresh;
+},
+setTopStickyInfoStatus:function(t,s){
+t.topStickyInfoStatus=s.status;
+},
+setFullscreen:function(t,s){
+t.isInFullscreen=s.value;
+},
+setSeeking:function(t,s){
+t.isSeeking=s.value;
+},
+setStatus:function(t,s){
+t.status=s.status,t.subStatus=s.subStatus;
+},
+setLoadingStatus:function(t,s){
+t.loadingStatus=s.status;
+},
+setControlBarStatus:function(t,s){
+t.controlBarStatus=s.status;
+},
+setCoverStatus:function(t,s){
+t.coverStatus=s.status;
+},
+setMidPlayStatus:function(t,s){
+t.midPlayStatus=s.status;
+},
+setEndExitFullStatus:function(t,s){
+t.endExitFullStatus=s.status;
+},
+setResolutionEntryStatus:function(t,s){
+t.resolutionEntryStatus=s.status;
+},
+setSubSettingStatus:function(t,s){
+t.subSettingStatus=s.status;
+},
+setAccessPlayBtnStatus:function(t,s){
+t.accessPlayBtnStatus=s.status;
+},
+setTouchOprStatus:function(t,s){
+t.touchOprStatus=s.status;
+},
+addProgressBarMark:function(t,s){
+t.progressBarMark=[].concat(t.progressBarMark,s.value);
+},
+removeProgressBarMark:function(t,s){
+for(var a=t.progressBarMark.length-1;a>-1;a--){
+var r=t.progressBarMark[a];
+r.id===s.id&&t.progressBarMark.splice(a,1);
+}
+},
+clearProgressBarMark:function(t){
+t.progressBarMark=[];
+}
+}
+};
+});var _extends=Object.assign||function(e){
+for(var n=1;n<arguments.length;n++){
+var o=arguments[n];
+for(var i in o)Object.prototype.hasOwnProperty.call(o,i)&&(e[i]=o[i]);
+}
+return e;
+};
+define("pages_new/common_share/video/lifecycle_manager.js",["biz_wap/jsapi/log.js","biz_wap/utils/ajax.js","common/utils.js","biz_wap/jsapi/core.js","biz_wap/utils/device.js","biz_common/utils/url/parse.js","biz_common/utils/cookie.js","biz_wap/utils/mmversion.js","pages_new/modules/utils/url.js","biz_wap/jsapi/leaveReport.js","biz_wap/utils/jsmonitor_report.js","pages_new/common_share/video/report.js"],function(e){
+"use strict";
+function n(){
+return E;
+}
+function o(e){
+E=z&&e;
+}
+function i(e){
+M.setSum(221764,k.isIOS?e:e+1,1),M.send();
+}
+function a(e){
+"function"==typeof e&&b.push(e);
+}
+function t(e){
+"function"==typeof e&&C.push(e);
+}
+function r(e){
+"function"==typeof e&&O.push(e);
+}
+function s(){
+b.forEach(function(e){
+return e();
+});
+}
+function c(){
+C.forEach(function(e){
+return e(!1);
+});
+}
+function l(e){
+O.forEach(function(n){
+return n(e);
+});
+}
+function f(e,n){
+window.uin=n.uin||window.uin||"",window.key=n.key||window.key||"",window.wxtoken=n.wxtoken||window.wxtoken||"",
+window.pass_ticket=n.pass_ticket&&encodeURIComponent(n.pass_ticket.html(!1).html(!1).replace(/\s/g,"+"))||window.pass_ticket||"",
+window.__initGlobalData(e,n),window.__initCgiDataConfig(e,n),window.__initCommentConfig(e,n);
+}
+function p(e){
+var n=S.get("appmsg_token");
+n?(window.appmsg_token=n||window.appmsg_token||"",console.info("[Lifecycle Manager] Update Csrf Token By Cookie",window.appmsg_token),
+w.info("[Lifecycle Manager] Update Csrf Token By Cookie",window.appmsg_token)):(_({
+url:v.join(e,{
+f:"json",
+action:"preload"
+}),
+type:"GET",
+async:!1,
+timeout:2e3,
+notJoinUrl:!0,
+success:function(e){
+try{
+e=JSON.parse(e),window.appmsg_token=e&&e.base_resp&&e.base_resp.appmsg_token||window.appmsg_token||"",
+console.info("[Lifecycle Manager] Update Csrf Token",window.appmsg_token),w.info("[Lifecycle Manager] Update Csrf Token",window.appmsg_token);
+}catch(n){
+console.error("[Lifecycle Manager] Update Csrf Token Failed",n),w.error("[Lifecycle Manager] Update Csrf Token Failed",n.toString());
+}
+}
+}),i(34));
+}
+function d(e){
+t(e.init),a(e.destroy),r(e.getData),"function"==typeof e.init&&e.init(!0);
+}
+function g(e,n){
+E&&n&&!G[n]&&_({
+url:e.replace(/scene=\d+/g,"scene=9876").replace(/#.*$/,"")+"&action=preload",
+type:"GET",
+timeout:2e3,
+success:function(o){
+try{
+G[n]=JSON.parse(o),console.info("[Lifecycle Manager] Preload PageData",n,e,G[n]),
+w.info("[Lifecycle Manager] Preload PageData",n,e);
+}catch(i){
+console.error("[Lifecycle Manager] Parse Preload PageData Failed",n,e,i),w.error("[Lifecycle Manager] Parse Preload PageData Failed",n,e,i.toString());
+}
+G[n]&&G[n].video_page_info&&"string"==typeof G[n].video_page_info.cover_url&&((new Image).src=G[n].video_page_info.cover_url);
+}
+});
+}
+function u(e,n){
+if(!I){
+if(I=!0,console.info("[Lifecycle Manager] Start to switch to",e),w.info("[Lifecycle Manager] Start to switch to",e),
+P.add19735ExtData({
+EventType:3
+}),L.reportNow(),!E)return void y.loadNewPageKeepingHistoryStackIfSecOpen(e);
+if(k.isIOS){
+var o=e.match(/__biz=(.*?)&/);
+if(!o||o[1]!==window.biz)return void(location.href=e.replace(/#.*$/,"")+"#wechat_redirect");
+}
+var a=_extends({},j.getParams(location.href),j.getParams(e)),t=3e3,r=2,d=0,g=null;
+s();
+var u=function(){
+if(d===r)if(g&&g.base_resp&&0===g.base_resp.ret){
+G={};
+var n=j.getParams(location.href);
+f(g,n),c(),I=!1,i(30),console.info("[Lifecycle Manager] Finish to switch to",e),
+w.info("[Lifecycle Manager] Finish to switch to",e);
+}else y.loadNewPageKeepingHistoryStackIfSecOpen(e);
+},h=setTimeout(function(){
+i(32),location.href===e?location.reload():y.loadNewPageKeepingHistoryStackIfSecOpen(e);
+},t),v=function M(n){
+document.removeEventListener("WeixinJSBridgeAuthChanged",M),console.info("[Lifecycle Manager] GetA8Key Success",n.state),
+w.info("[Lifecycle Manager] GetA8Key Success",n.state),history.replaceState(null,"",n.fullUrl),
+clearTimeout(h),k.isIOS&&(window.__second_open__=D),p(e),d++,u();
+};
+document.addEventListener("WeixinJSBridgeAuthChanged",v),history.replaceState(null,"",e);
+var S=function b(){
+k.isAndroid&&document.removeEventListener("WeixinJSBridgeSpaHistoryChanged",b),console.info("[Lifecycle Manager] History Stack Changed"),
+w.info("[Lifecycle Manager] History Stack Changed"),k.isIOS&&(D=window.__second_open__),
+delete window.__second_open__,m.invoke("doAuthCurrentUrl",{},function(n){
+n&&n.err_msg&&-1!==n.err_msg.indexOf(":ok")?(console.info("[Lifecycle Manager] Invoke GetA8Key Success",n),
+w.info("[Lifecycle Manager] Invoke GetA8Key Success",JSON.stringify(n))):(console.error("[Lifecycle Manager] Invoke GetA8Key Failed",n),
+w.error("[Lifecycle Manager] Invoke GetA8Key Failed",JSON.stringify(n)),clearTimeout(h),
+y.loadNewPageKeepingHistoryStackIfSecOpen(e));
+});
+};
+k.isAndroid?document.addEventListener("WeixinJSBridgeSpaHistoryChanged",S):S(),n&&G[n]?(console.info("[Lifecycle Manager] Get Cache PageData",n),
+w.info("[Lifecycle Manager] Get Cache PageData",n),g=G[n],f(g,a),l(g),d++,u()):_({
+url:e.replace(/scene=\d+/g,"scene=9875").replace(/#.*$/,"")+"&action=preload",
+type:"GET",
+async:!1,
+timeout:2e3,
+success:function(n){
+try{
+g=JSON.parse(n),console.info("[Lifecycle Manager] Get PageData",g),w.info("[Lifecycle Manager] Get PageData");
+}catch(o){
+console.error("[Lifecycle Manager] Parse PageData Failed",e,o),w.error("[Lifecycle Manager] Parse PageData Failed",e,o.toString());
+}
+g&&(f(g,a),l(g)),d++,u();
+},
+error:function(){
+y.loadNewPageKeepingHistoryStackIfSecOpen(e);
+}
+});
+}
+}
+var w=e("biz_wap/jsapi/log.js"),_=e("biz_wap/utils/ajax.js"),y=e("common/utils.js"),m=e("biz_wap/jsapi/core.js"),h=e("biz_wap/utils/device.js"),v=e("biz_common/utils/url/parse.js"),S=e("biz_common/utils/cookie.js"),k=e("biz_wap/utils/mmversion.js"),j=e("pages_new/modules/utils/url.js"),L=e("biz_wap/jsapi/leaveReport.js"),M=e("biz_wap/utils/jsmonitor_report.js"),P=e("pages_new/common_share/video/report.js"),b=[],C=[],O=[],z=window.top===window&&k.isWechat&&!k.isInMiniProgram&&!window.is_teenager&&(h.os.iphone&&k.gtVersion("8.0.3",1)||h.os.android&&k.gtVersion("8.0.1",1)),E=!1,I=!1,G={},D=void 0;
+return z&&k.isIOS&&(console.info("[Lifecycle Manager] Overwrite sys:auth"),w.info("[Lifecycle Manager] Overwrite sys:auth"),
+m.on("sys:auth",function(e){
+console.info("[Lifecycle Manager] Get sys:auth Event",e),w.info("[Lifecycle Manager] Get sys:auth Event",JSON.stringify(e));
+var n=document.createEvent("Events");
+n.initEvent("WeixinJSBridgeAuthChanged"),n.state=e.state,n.fullUrl=e.fullUrl,document.dispatchEvent(n);
+})),{
+isSpaMode:n,
+setSpaMode:o,
+register:d,
+openNewVideoPage:u,
+preloadNewVideoPageData:g
+};
+});function _typeof(e){
+return e&&"undefined"!=typeof Symbol&&e.constructor===Symbol?"symbol":typeof e;
+}
+define("pages_new/modules/utils/url.js",[],function(){
+"use strict";
+var e=function(){
+var e=arguments.length<=0||void 0===arguments[0]?window.top.location:arguments[0];
+"string"==typeof e&&(e=new URL(e));
+for(var n=e.search.substring(1).split("&"),t={},o=0;o<n.length;o++){
+var r=n[o].split("="),i=decodeURIComponent(r.shift());
+"undefined"==typeof t[i]&&(t[i]=decodeURIComponent(r.join("=")));
+}
+return t;
+},n=function(e,n,t){
+return"string"!=typeof e?"":(n&&"object"===("undefined"==typeof n?"undefined":_typeof(n))&&Object.keys(n).length&&(e+="?"+Object.keys(n).map(function(e){
+return e+"="+encodeURIComponent(n[e]);
+}).join("&")),t&&"string"==typeof t&&(e+="#"+t),e);
+};
+return{
+getParams:e,
+genUrl:n
+};
+});function _typeof(t){
+return t&&"undefined"!=typeof Symbol&&t.constructor===Symbol?"symbol":typeof t;
+}
+define("pages_new/3rd/vuex.js",[],function(){
+"use strict";
+function t(t){
+function e(){
+var t=this.$options;
+t.store?this.$store="function"==typeof t.store?t.store():t.store:t.parent&&t.parent.$store&&(this.$store=t.parent.$store);
+}
+var n=Number(t.version.split(".")[0]);
+if(n>=2)t.mixin({
+beforeCreate:e
+});else{
+var r=t.prototype._init;
+t.prototype._init=function(t){
+void 0===t&&(t={}),t.init=t.init?[e].concat(t.init):e,r.call(this,t);
+};
+}
+}
+function e(t){
+L&&(t._devtoolHook=L,L.emit("vuex:init",t),L.on("vuex:travel-to-state",function(e){
+t.replaceState(e);
+}),t.subscribe(function(t,e){
+L.emit("vuex:mutation",t,e);
+},{
+prepend:!0
+}),t.subscribeAction(function(t,e){
+L.emit("vuex:action",t,e);
+},{
+prepend:!0
+}));
+}
+function n(t,e){
+return t.filter(e)[0];
+}
+function r(t,e){
+if(void 0===e&&(e=[]),null===t||"object"!==("undefined"==typeof t?"undefined":_typeof(t)))return t;
+var o=n(e,function(e){
+return e.original===t;
+});
+if(o)return o.copy;
+var i=Array.isArray(t)?[]:{};
+return e.push({
+original:t,
+copy:i
+}),Object.keys(t).forEach(function(n){
+i[n]=r(t[n],e);
+}),i;
+}
+function o(t,e){
+Object.keys(t).forEach(function(n){
+return e(t[n],n);
+});
+}
+function i(t){
+return null!==t&&"object"===("undefined"==typeof t?"undefined":_typeof(t));
+}
+function a(t){
+return t&&"function"==typeof t.then;
+}
+function s(t,e){
+if(!t)throw new Error("[vuex] "+e);
+}
+function u(t,e){
+return function(){
+return t(e);
+};
+}
+function c(t,e,n){
+if(f(t,n),e.update(n),n.modules)for(var r in n.modules){
+if(!e.getChild(r))return void console.warn("[vuex] trying to add a new module '"+r+"' on hot reloading, manual reload is needed");
+c(t.concat(r),e.getChild(r),n.modules[r]);
+}
+}
+function f(t,e){
+Object.keys(q).forEach(function(n){
+if(e[n]){
+var r=q[n];
+o(e[n],function(e,o){
+s(r.assert(e),l(t,n,o,e,r.expected));
+});
+}
+});
+}
+function l(t,e,n,r,o){
+var i=e+" should be "+o+' but "'+e+"."+n+'"';
+return t.length>0&&(i+=' in module "'+t.join(".")+'"'),i+=" is "+JSON.stringify(r)+".";
+}
+function p(t,e,n){
+return e.indexOf(t)<0&&(n&&n.prepend?e.unshift(t):e.push(t)),function(){
+var n=e.indexOf(t);
+n>-1&&e.splice(n,1);
+};
+}
+function d(t,e){
+t._actions=Object.create(null),t._mutations=Object.create(null),t._wrappedGetters=Object.create(null),
+t._modulesNamespaceMap=Object.create(null);
+var n=t.state;
+m(t,n,[],t._modules.root,!0),h(t,n,e);
+}
+function h(t,e,n){
+var r=t._vm;
+t.getters={},t._makeLocalGettersCache=Object.create(null);
+var i=t._wrappedGetters,a={};
+o(i,function(e,n){
+a[n]=u(e,t),Object.defineProperty(t.getters,n,{
+get:function(){
+return t._vm[n];
+},
+enumerable:!0
+});
+});
+var s=U.config.silent;
+U.config.silent=!0,t._vm=new U({
+data:{
+$$state:e
+},
+computed:a
+}),U.config.silent=s,t.strict&&w(t),r&&(n&&t._withCommit(function(){
+r._data.$$state=null;
+}),U.nextTick(function(){
+return r.$destroy();
+}));
+}
+function m(t,e,n,r,o){
+var i=!n.length,a=t._modules.getNamespace(n);
+if(r.namespaced&&(t._modulesNamespaceMap[a]&&console.error("[vuex] duplicate namespace "+a+" for the namespaced module "+n.join("/")),
+t._modulesNamespaceMap[a]=r),!i&&!o){
+var s=x(e,n.slice(0,-1)),u=n[n.length-1];
+t._withCommit(function(){
+u in s&&console.warn('[vuex] state field "'+u+'" was overridden by a module with the same name at "'+n.join(".")+'"'),
+U.set(s,u,r.state);
+});
+}
+var c=r.context=v(t,a,n);
+r.forEachMutation(function(e,n){
+var r=a+n;
+g(t,r,e,c);
+}),r.forEachAction(function(e,n){
+var r=e.root?n:a+n,o=e.handler||e;
+b(t,r,o,c);
+}),r.forEachGetter(function(e,n){
+var r=a+n;
+_(t,r,e,c);
+}),r.forEachChild(function(r,i){
+m(t,e,n.concat(i),r,o);
+});
+}
+function v(t,e,n){
+var r=""===e,o={
+dispatch:r?t.dispatch:function(n,r,o){
+var i=A(n,r,o),a=i.payload,s=i.options,u=i.type;
+return s&&s.root||(u=e+u,t._actions[u])?t.dispatch(u,a):void console.error("[vuex] unknown local action type: "+i.type+", global type: "+u);
+},
+commit:r?t.commit:function(n,r,o){
+var i=A(n,r,o),a=i.payload,s=i.options,u=i.type;
+return s&&s.root||(u=e+u,t._mutations[u])?void t.commit(u,a,s):void console.error("[vuex] unknown local mutation type: "+i.type+", global type: "+u);
+}
+};
+return Object.defineProperties(o,{
+getters:{
+get:r?function(){
+return t.getters;
+}:function(){
+return y(t,e);
+}
+},
+state:{
+get:function(){
+return x(t.state,n);
+}
+}
+}),o;
+}
+function y(t,e){
+if(!t._makeLocalGettersCache[e]){
+var n={},r=e.length;
+Object.keys(t.getters).forEach(function(o){
+if(o.slice(0,r)===e){
+var i=o.slice(r);
+Object.defineProperty(n,i,{
+get:function(){
+return t.getters[o];
+},
+enumerable:!0
+});
+}
+}),t._makeLocalGettersCache[e]=n;
+}
+return t._makeLocalGettersCache[e];
+}
+function g(t,e,n,r){
+var o=t._mutations[e]||(t._mutations[e]=[]);
+o.push(function(e){
+n.call(t,r.state,e);
+});
+}
+function b(t,e,n,r){
+var o=t._actions[e]||(t._actions[e]=[]);
+o.push(function(e){
+var o=n.call(t,{
+dispatch:r.dispatch,
+commit:r.commit,
+getters:r.getters,
+state:r.state,
+rootGetters:t.getters,
+rootState:t.state
+},e);
+return a(o)||(o=Promise.resolve(o)),t._devtoolHook?o.catch(function(e){
+throw t._devtoolHook.emit("vuex:error",e),e;
+}):o;
+});
+}
+function _(t,e,n,r){
+return t._wrappedGetters[e]?void console.error("[vuex] duplicate getter key: "+e):void(t._wrappedGetters[e]=function(t){
+return n(r.state,r.getters,t.state,t.getters);
+});
+}
+function w(t){
+t._vm.$watch(function(){
+return this._data.$$state;
+},function(){
+s(t._committing,"do not mutate vuex store state outside mutation handlers.");
+},{
+deep:!0,
+sync:!0
+});
+}
+function x(t,e){
+return e.reduce(function(t,e){
+return t[e];
+},t);
+}
+function A(t,e,n){
+return i(t)&&t.type&&(n=e,e=t,t=t.type),s("string"==typeof t,"expects string as the type, but found "+("undefined"==typeof t?"undefined":_typeof(t))+"."),
+{
+type:t,
+payload:e,
+options:n
+};
+}
+function j(e){
+return U&&e===U?void console.error("[vuex] already installed. Vue.use(Vuex) should be called only once."):(U=e,
+void t(U));
+}
+function O(t){
+return M(t)?Array.isArray(t)?t.map(function(t){
+return{
+key:t,
+val:t
+};
+}):Object.keys(t).map(function(e){
+return{
+key:e,
+val:t[e]
+};
+}):[];
+}
+function M(t){
+return Array.isArray(t)||i(t);
+}
+function $(t){
+return function(e,n){
+return"string"!=typeof e?(n=e,e=""):"/"!==e.charAt(e.length-1)&&(e+="/"),t(e,n);
+};
+}
+function E(t,e,n){
+var r=t._modulesNamespaceMap[n];
+return r||console.error("[vuex] module namespace not found in "+e+"(): "+n),r;
+}
+function C(t){
+void 0===t&&(t={});
+var e=t.collapsed;
+void 0===e&&(e=!0);
+var n=t.filter;
+void 0===n&&(n=function(){
+return!0;
+});
+var o=t.transformer;
+void 0===o&&(o=function(t){
+return t;
+});
+var i=t.mutationTransformer;
+void 0===i&&(i=function(t){
+return t;
+});
+var a=t.actionFilter;
+void 0===a&&(a=function(){
+return!0;
+});
+var s=t.actionTransformer;
+void 0===s&&(s=function(t){
+return t;
+});
+var u=t.logMutations;
+void 0===u&&(u=!0);
+var c=t.logActions;
+void 0===c&&(c=!0);
+var f=t.logger;
+return void 0===f&&(f=console),function(t){
+var l=r(t.state);
+"undefined"!=typeof f&&(u&&t.subscribe(function(t,a){
+var s=r(a);
+if(n(t,l,s)){
+var u=G(),c=i(t),p="mutation "+t.type+u;
+k(f,p,e),f.log("%c prev state","color: #9E9E9E; font-weight: bold",o(l)),f.log("%c mutation","color: #03A9F4; font-weight: bold",c),
+f.log("%c next state","color: #4CAF50; font-weight: bold",o(s)),S(f);
+}
+l=s;
+}),c&&t.subscribeAction(function(t,n){
+if(a(t,n)){
+var r=G(),o=s(t),i="action "+t.type+r;
+k(f,i,e),f.log("%c action","color: #03A9F4; font-weight: bold",o),S(f);
+}
+}));
+};
+}
+function k(t,e,n){
+var r=n?t.groupCollapsed:t.group;
+try{
+r.call(t,e);
+}catch(o){
+t.log(e);
+}
+}
+function S(t){
+try{
+t.groupEnd();
+}catch(e){
+t.log("—— log end ——");
+}
+}
+function G(){
+var t=new Date;
+return" @ "+P(t.getHours(),2)+":"+P(t.getMinutes(),2)+":"+P(t.getSeconds(),2)+"."+P(t.getMilliseconds(),3);
+}
+function N(t,e){
+return new Array(e+1).join(t);
+}
+function P(t,e){
+return N("0",e-t.toString().length)+t;
+}
+var V="undefined"!=typeof window?window:"undefined"!=typeof global?global:{},L=V.__VUE_DEVTOOLS_GLOBAL_HOOK__,H=function(t,e){
+this.runtime=e,this._children=Object.create(null),this._rawModule=t;
+var n=t.state;
+this.state=("function"==typeof n?n():n)||{};
+},F={
+namespaced:{
+configurable:!0
+}
+};
+F.namespaced.get=function(){
+return!!this._rawModule.namespaced;
+},H.prototype.addChild=function(t,e){
+this._children[t]=e;
+},H.prototype.removeChild=function(t){
+delete this._children[t];
+},H.prototype.getChild=function(t){
+return this._children[t];
+},H.prototype.hasChild=function(t){
+return t in this._children;
+},H.prototype.update=function(t){
+this._rawModule.namespaced=t.namespaced,t.actions&&(this._rawModule.actions=t.actions),
+t.mutations&&(this._rawModule.mutations=t.mutations),t.getters&&(this._rawModule.getters=t.getters);
+},H.prototype.forEachChild=function(t){
+o(this._children,t);
+},H.prototype.forEachGetter=function(t){
+this._rawModule.getters&&o(this._rawModule.getters,t);
+},H.prototype.forEachAction=function(t){
+this._rawModule.actions&&o(this._rawModule.actions,t);
+},H.prototype.forEachMutation=function(t){
+this._rawModule.mutations&&o(this._rawModule.mutations,t);
+},Object.defineProperties(H.prototype,F);
+var T=function(t){
+this.register([],t,!1);
+};
+T.prototype.get=function(t){
+return t.reduce(function(t,e){
+return t.getChild(e);
+},this.root);
+},T.prototype.getNamespace=function(t){
+var e=this.root;
+return t.reduce(function(t,n){
+return e=e.getChild(n),t+(e.namespaced?n+"/":"");
+},"");
+},T.prototype.update=function(t){
+c([],this.root,t);
+},T.prototype.register=function(t,e,n){
+var r=this;
+void 0===n&&(n=!0),f(t,e);
+var i=new H(e,n);
+if(0===t.length)this.root=i;else{
+var a=this.get(t.slice(0,-1));
+a.addChild(t[t.length-1],i);
+}
+e.modules&&o(e.modules,function(e,o){
+r.register(t.concat(o),e,n);
+});
+},T.prototype.unregister=function(t){
+var e=this.get(t.slice(0,-1)),n=t[t.length-1],r=e.getChild(n);
+return r?void(r.runtime&&e.removeChild(n)):void console.warn("[vuex] trying to unregister module '"+n+"', which is not registered");
+},T.prototype.isRegistered=function(t){
+var e=this.get(t.slice(0,-1)),n=t[t.length-1];
+return e.hasChild(n);
+};
+var U,D={
+assert:function(t){
+return"function"==typeof t;
+},
+expected:"function"
+},R={
+assert:function(t){
+return"function"==typeof t||"object"===("undefined"==typeof t?"undefined":_typeof(t))&&"function"==typeof t.handler;
+},
+expected:'function or object with "handler" function'
+},q={
+getters:D,
+mutations:D,
+actions:R
+},B=function Y(t){
+var n=this;
+void 0===t&&(t={}),!U&&"undefined"!=typeof window&&window.Vue&&j(window.Vue),s(U,"must call Vue.use(Vuex) before creating a store instance."),
+s("undefined"!=typeof Promise,"vuex requires a Promise polyfill in this browser."),
+s(this instanceof Y,"store must be called with the new operator.");
+var r=t.plugins;
+void 0===r&&(r=[]);
+var o=t.strict;
+void 0===o&&(o=!1),this._committing=!1,this._actions=Object.create(null),this._actionSubscribers=[],
+this._mutations=Object.create(null),this._wrappedGetters=Object.create(null),this._modules=new T(t),
+this._modulesNamespaceMap=Object.create(null),this._subscribers=[],this._watcherVM=new U,
+this._makeLocalGettersCache=Object.create(null);
+var i=this,a=this,u=a.dispatch,c=a.commit;
+this.dispatch=function(t,e){
+return u.call(i,t,e);
+},this.commit=function(t,e,n){
+return c.call(i,t,e,n);
+},this.strict=o;
+var f=this._modules.root.state;
+m(this,f,[],this._modules.root),h(this,f),r.forEach(function(t){
+return t(n);
+});
+var l=void 0!==t.devtools?t.devtools:U.config.devtools;
+l&&e(this);
+},J={
+state:{
+configurable:!0
+}
+};
+J.state.get=function(){
+return this._vm._data.$$state;
+},J.state.set=function(){
+s(!1,"use store.replaceState() to explicit replace store state.");
+},B.prototype.commit=function(t,e,n){
+var r=this,o=A(t,e,n),i=o.type,a=o.payload,s=o.options,u={
+type:i,
+payload:a
+},c=this._mutations[i];
+return c?(this._withCommit(function(){
+c.forEach(function(t){
+t(a);
+});
+}),this._subscribers.slice().forEach(function(t){
+return t(u,r.state);
+}),void(s&&s.silent&&console.warn("[vuex] mutation type: "+i+". Silent option has been removed. Use the filter functionality in the vue-devtools"))):void console.error("[vuex] unknown mutation type: "+i);
+},B.prototype.dispatch=function(t,e){
+var n=this,r=A(t,e),o=r.type,i=r.payload,a={
+type:o,
+payload:i
+},s=this._actions[o];
+if(!s)return void console.error("[vuex] unknown action type: "+o);
+try{
+this._actionSubscribers.slice().filter(function(t){
+return t.before;
+}).forEach(function(t){
+return t.before(a,n.state);
+});
+}catch(u){
+console.warn("[vuex] error in before action subscribers: "),console.error(u);
+}
+var c=s.length>1?Promise.all(s.map(function(t){
+return t(i);
+})):s[0](i);
+return new Promise(function(t,e){
+c.then(function(e){
+try{
+n._actionSubscribers.filter(function(t){
+return t.after;
+}).forEach(function(t){
+return t.after(a,n.state);
+});
+}catch(r){
+console.warn("[vuex] error in after action subscribers: "),console.error(r);
+}
+t(e);
+},function(t){
+try{
+n._actionSubscribers.filter(function(t){
+return t.error;
+}).forEach(function(e){
+return e.error(a,n.state,t);
+});
+}catch(r){
+console.warn("[vuex] error in error action subscribers: "),console.error(r);
+}
+e(t);
+});
+});
+},B.prototype.subscribe=function(t,e){
+return p(t,this._subscribers,e);
+},B.prototype.subscribeAction=function(t,e){
+var n="function"==typeof t?{
+before:t
+}:t;
+return p(n,this._actionSubscribers,e);
+},B.prototype.watch=function(t,e,n){
+var r=this;
+return s("function"==typeof t,"store.watch only accepts a function."),this._watcherVM.$watch(function(){
+return t(r.state,r.getters);
+},e,n);
+},B.prototype.replaceState=function(t){
+var e=this;
+this._withCommit(function(){
+e._vm._data.$$state=t;
+});
+},B.prototype.registerModule=function(t,e,n){
+void 0===n&&(n={}),"string"==typeof t&&(t=[t]),s(Array.isArray(t),"module path must be a string or an Array."),
+s(t.length>0,"cannot register the root module by using registerModule."),this._modules.register(t,e),
+m(this,this.state,t,this._modules.get(t),n.preserveState),h(this,this.state);
+},B.prototype.unregisterModule=function(t){
+var e=this;
+"string"==typeof t&&(t=[t]),s(Array.isArray(t),"module path must be a string or an Array."),
+this._modules.unregister(t),this._withCommit(function(){
+var n=x(e.state,t.slice(0,-1));
+U.delete(n,t[t.length-1]);
+}),d(this);
+},B.prototype.hasModule=function(t){
+return"string"==typeof t&&(t=[t]),s(Array.isArray(t),"module path must be a string or an Array."),
+this._modules.isRegistered(t);
+},B.prototype.hotUpdate=function(t){
+this._modules.update(t),d(this,!0);
+},B.prototype._withCommit=function(t){
+var e=this._committing;
+this._committing=!0,t(),this._committing=e;
+},Object.defineProperties(B.prototype,J);
+var K=$(function(t,e){
+var n={};
+return M(e)||console.error("[vuex] mapState: mapper parameter must be either an Array or an Object"),
+O(e).forEach(function(e){
+var r=e.key,o=e.val;
+n[r]=function(){
+var e=this.$store.state,n=this.$store.getters;
+if(t){
+var r=E(this.$store,"mapState",t);
+if(!r)return;
+e=r.context.state,n=r.context.getters;
+}
+return"function"==typeof o?o.call(this,e,n):e[o];
+},n[r].vuex=!0;
+}),n;
+}),z=$(function(t,e){
+var n={};
+return M(e)||console.error("[vuex] mapMutations: mapper parameter must be either an Array or an Object"),
+O(e).forEach(function(e){
+var r=e.key,o=e.val;
+n[r]=function(){
+for(var e=[],n=arguments.length;n--;)e[n]=arguments[n];
+var r=this.$store.commit;
+if(t){
+var i=E(this.$store,"mapMutations",t);
+if(!i)return;
+r=i.context.commit;
+}
+return"function"==typeof o?o.apply(this,[r].concat(e)):r.apply(this.$store,[o].concat(e));
+};
+}),n;
+}),I=$(function(t,e){
+var n={};
+return M(e)||console.error("[vuex] mapGetters: mapper parameter must be either an Array or an Object"),
+O(e).forEach(function(e){
+var r=e.key,o=e.val;
+o=t+o,n[r]=function(){
+return!t||E(this.$store,"mapGetters",t)?o in this.$store.getters?this.$store.getters[o]:void console.error("[vuex] unknown getter: "+o):void 0;
+},n[r].vuex=!0;
+}),n;
+}),Q=$(function(t,e){
+var n={};
+return M(e)||console.error("[vuex] mapActions: mapper parameter must be either an Array or an Object"),
+O(e).forEach(function(e){
+var r=e.key,o=e.val;
+n[r]=function(){
+for(var e=[],n=arguments.length;n--;)e[n]=arguments[n];
+var r=this.$store.dispatch;
+if(t){
+var i=E(this.$store,"mapActions",t);
+if(!i)return;
+r=i.context.dispatch;
+}
+return"function"==typeof o?o.apply(this,[r].concat(e)):r.apply(this.$store,[o].concat(e));
+};
+}),n;
+}),W=function(t){
+return{
+mapState:K.bind(null,t),
+mapGetters:I.bind(null,t),
+mapMutations:z.bind(null,t),
+mapActions:Q.bind(null,t)
+};
+},X={
+Store:B,
+install:j,
+version:"3.5.1",
+mapState:K,
+mapMutations:z,
+mapGetters:I,
+mapActions:Q,
+createNamespacedHelpers:W,
+createLogger:C
+};
+return X;
+});
